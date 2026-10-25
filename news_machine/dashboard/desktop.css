@@ -1,0 +1,238 @@
+/* Newsroom OS / DAW workstation skin.
+   New chrome/layout only: existing routes, stream supervisor, editor API untouched. */
+:root{--daw-bg:#11151a;--daw-chrome:#1a2027;--daw-surface:#20272e;--daw-raised:#263039;--daw-ink:#e8edf2;--daw-muted:#94a1ae;--daw-edge:#343f49;--daw-accent:#ed7555;--daw-green:#49c39b;--daw-browser:225px;--daw-inspector:320px;--daw-dock:245px}
+body.daw-app,body.modern-home.daw-home{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--daw-bg);color:var(--daw-ink)}
+body.daw-app *{box-sizing:border-box}
+body.daw-app{height:100vh;height:100dvh;margin:0;display:flex;flex-direction:column;overflow:hidden}
+.daw-app button{cursor:pointer}
+.daw-app button:focus-visible,.daw-app a:focus-visible,.daw-app select:focus-visible,.daw-app input:focus-visible{outline:2px solid #f5a780;outline-offset:2px}
+.daw-app .topbar{position:relative;top:auto;flex:0 0 48px;height:48px;width:100%;padding:0 18px;z-index:60;background:#1b2229;border-bottom:1px solid #35414b;color:var(--daw-ink)}
+.daw-app .brand{gap:9px;color:var(--daw-ink)}.daw-app .brand>b{background:var(--daw-accent);color:#181b20;width:30px;height:30px;border-radius:5px;font:800 14px/1 Inter,Arial}
+.daw-app .brand>span{font:700 13px Inter,Arial}.daw-app .brand small{font:600 8px ui-monospace,Consolas;color:#8f9ca7}
+.daw-app .command-title{display:flex;align-items:center;gap:10px;margin-left:18px;padding-left:18px;border-left:1px solid #3a4650;white-space:nowrap;overflow:hidden}
+.daw-app .command-title span{font:10px ui-monospace,Consolas;color:#83929f;text-transform:uppercase}
+.daw-app .command-title b{font:600 12px Inter,Arial;overflow:hidden;text-overflow:ellipsis}
+.daw-app .topbar nav{margin-left:auto;gap:14px;color:#b4c0ca;font:10px Inter,Arial}
+.daw-app .topbar .command-button{margin:0;border-radius:4px;background:#2c3943;border:1px solid #46535d;color:#f1f3f5;font:700 10px Inter,Arial;padding:8px 11px}
+.daw-app #connection{white-space:nowrap}.daw-app #connection i{background:var(--daw-green)}
+.daw-menubar{height:30px;flex:0 0 30px;background:#151a20;border-bottom:1px solid #303b44;display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#b9c2cb;gap:14px}
+.daw-menugroup{display:flex;align-items:center;gap:8px;min-width:0}.daw-app-name{font:800 10px Inter,Arial;letter-spacing:.1em;color:#aebbc5}.daw-app-name b{color:#f39a7e}.daw-menusep{width:1px;height:16px;background:#3a434a;margin:0 5px}
+.daw-menubar button{border:0;background:transparent;font:500 11px Inter,Arial;color:#aeb9c3;padding:4px 10px;border-radius:4px;margin:0}
+.daw-menubar button:hover{background:#303941;color:white}.daw-workspace-label,.daw-workspace-key{font:9px ui-monospace,Consolas;color:#74828f;letter-spacing:.05em}
+.daw-workspace-key{color:#64727e}
+.daw-transport{height:57px;flex:0 0 57px;background:#252d34;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #45505c;padding:6px 17px;gap:15px}
+.daw-transport-primary,.daw-transport-secondary{display:flex;align-items:center;gap:7px;min-width:0}
+.daw-transport-primary>button{height:32px;min-width:32px;border:1px solid #3f4c58;color:#cad4db;border-radius:5px;background:#1b232b;padding:5px 8px;margin:0;font:600 15px Inter,Arial}
+.daw-transport-primary>button:hover{border-color:var(--daw-accent);color:#fff}.daw-transport-primary>button.daw-play{height:38px;width:43px;background:var(--daw-accent);border-color:var(--daw-accent);color:#15191d;font-size:19px}
+.daw-transport-clock{font:700 22px/1 ui-monospace,"Cascadia Mono",Consolas;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:#f2f6f7;margin-left:13px}
+.daw-transport-duration,.daw-clock-separator{font:12px ui-monospace,Consolas;color:#91a1ae}
+.daw-rate,.daw-volume{display:flex;gap:8px;align-items:center;color:#a9b6c0;font:10px Inter,Arial;white-space:nowrap}
+.daw-rate select{display:inline-block;margin:0;padding:6px 7px;width:auto;background:#1b2229;border:1px solid #3f4b53;border-radius:4px;color:#dfe6ea;font:11px Inter,Arial}
+.daw-volume input{width:77px;accent-color:var(--daw-accent);margin:0}
+.daw-transport-divider{width:1px;height:30px;background:#45515b;margin:0 5px}
+.daw-transport .editor-view-switch{margin:0;background:#1b232b;border:1px solid #434f5a;border-radius:5px;padding:2px}
+.daw-transport .editor-view-switch button{background:transparent;color:#a4b5c0;font-size:10px;padding:7px 10px;border:0;border-radius:3px}
+.daw-transport .editor-view-switch button[aria-pressed="true"]{background:#45525c;color:#fff;box-shadow:none}
+.daw-transport .editor-zoom-controls{border-color:#46535d;display:flex;align-items:center}
+.daw-transport .editor-zoom-controls label{color:#b0bcc6;font-size:10px}
+.daw-transport .editor-zoom-controls input{width:76px;accent-color:var(--daw-accent)}
+.daw-transport .editor-zoom-controls button{background:#1b2229;border-color:#42515b;color:#dae2e8;border-radius:3px}
+.daw-app .studio-sidebar{position:fixed;left:0;top:135px;bottom:26px;width:58px;height:auto;z-index:40;margin:0;padding:11px 4px;background:#171d23;border:0;border-right:1px solid #38434d;display:flex;flex-direction:column;gap:4px;overflow-y:auto}
+.daw-app .studio-sidebar a,.daw-app .studio-sidebar button{position:relative;min-height:51px;height:auto;padding:7px 1px;display:flex;align-items:center;justify-content:center;gap:4px;flex-direction:column;width:100%;background:transparent;color:#8f9da8;border:0;border-radius:5px;font:600 9px Inter,Arial;text-decoration:none;white-space:normal;text-align:center;line-height:1.1;margin:0}
+.daw-app .studio-sidebar button span{display:block;font-size:19px;line-height:20px}
+.daw-app .studio-sidebar button:hover,.daw-app .studio-sidebar button.active{background:#2b3740;color:#f7fafb}
+.daw-app .studio-sidebar button.active:before{content:"";position:absolute;left:-4px;top:8px;bottom:8px;width:3px;background:var(--daw-accent);border-radius:0 3px 3px 0}
+.daw-app .studio-sidebar .side-home{display:none}.daw-app .studio-sidebar .side-bottom{margin-top:auto;border-top:1px solid #3c464f;border-radius:0}
+.daw-app .daw-workspace{--daw-browser:225px;--daw-inspector:320px;--daw-dock:245px;width:calc(100% - 58px);max-width:none;min-height:0;min-width:0;flex:1;margin:0 0 0 58px;padding:0;display:grid;grid-template-rows:minmax(0,1fr) var(--daw-dock);background:#141a20}
+.daw-stage{display:grid;grid-template-columns:var(--daw-browser) minmax(0,1fr) var(--daw-inspector);min-width:0;min-height:0;overflow:hidden}
+.daw-browser,.daw-canvas,.daw-sidepanel{position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden}
+.daw-browser{background:#1c242c;border-right:1px solid #3a4650;overflow-y:auto}
+.daw-canvas{background:#111719}
+.daw-sidepanel{background:#1f2730;border-left:1px solid #3a4650;overflow-y:auto}
+.daw-pane-heading{height:32px;min-height:32px;padding:0 11px;display:flex;align-items:center;justify-content:space-between;background:#29333b;border-bottom:1px solid #404c56;font:700 9px ui-monospace,Consolas;letter-spacing:.095em;color:#a7b6c3}
+.daw-pane-heading button,.daw-dock-top button{border:0;background:transparent;color:#b6c6cf;padding:4px 7px;margin:0;font-size:16px}
+.daw-inline-hint{font:9px Inter,Arial;color:#8796a2;letter-spacing:0;font-weight:400}
+.daw-browser .workspace-hero{display:flex;flex-direction:column;gap:10px;align-items:stretch;justify-content:initial;margin:0;border:0;border-bottom:1px solid #3d4651;background:transparent;padding:14px 12px}
+.daw-browser .workspace-hero>div{min-width:0}
+.daw-browser .back{font:10px Inter,Arial;text-decoration:none;color:#90a0ae}
+.daw-browser .title-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 8px}
+.daw-browser .title-line h1{font:700 16px/1.3 Inter,Arial;color:#f3f6f8;margin:0;overflow-wrap:anywhere;letter-spacing:-.01em}
+.daw-browser .live-pill{order:2;font-size:8px;font-family:ui-monospace,Consolas;margin:0}
+.daw-browser .workspace-hero p{font:10px/1.45 Inter,Arial;color:#8899a6;overflow-wrap:anywhere;margin:6px 0}
+.daw-browser .workspace-actions{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.daw-browser .workspace-actions>div:first-child{display:grid;gap:6px}
+.daw-browser .workspace-actions .primary{background:#cf684e;border:1px solid #e37a60;color:#181c21;border-radius:4px;padding:10px 8px;font:700 11px Inter,Arial;text-align:center;margin:0}
+.daw-browser .workspace-actions .stop-control{align-self:stretch;margin:0;border:1px solid #9f5752;border-radius:4px;background:#392a2a;color:#ffa69a;padding:8px}
+.daw-browser .workspace-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;align-self:stretch;margin:0;padding:0}
+.daw-browser .wm{border:1px solid #3b4650;background:#242e37;padding:9px;border-radius:4px}
+.daw-browser .wm b{display:block;font:700 17px Inter,Arial;color:#f0f4f8}
+.daw-browser .wm small{font:9px Inter,Arial;color:#8fa1af}
+.daw-browser #action-status{font:10px/1.4 Inter,Arial;color:#e9a48c;overflow-wrap:anywhere}
+.daw-browser .model-pipeline{display:flex;flex-direction:column;gap:0;padding:0;margin:0;background:none;border:0;box-shadow:none}
+.daw-browser .model-pipeline article{display:flex;gap:9px;align-items:center;min-width:0;padding:11px 12px;border:0;border-bottom:1px solid #333e47;background:transparent;border-radius:0}
+.daw-browser .model-pipeline article>span{font:9px ui-monospace,Consolas;color:#708390}
+.daw-browser .model-pipeline article i{height:7px;width:7px;min-width:7px;border-radius:50%;background:#58656d}
+.daw-browser .model-pipeline article b{display:block;font:600 11px Inter,Arial;color:#becbd2}
+.daw-browser .model-pipeline article small{display:block;font:9px Inter,Arial;color:#778996;margin-top:2px}
+.daw-browser .model-pipeline article.active i,.daw-browser .model-pipeline article.completed i{background:var(--daw-green)}
+.daw-browser .capability-warning,.daw-browser .stream-log{font:9px/1.5 ui-monospace,Consolas;max-height:90px;overflow:auto;background:#372e26;color:#ddb68e}
+.daw-canvas .audio-desk{position:relative;flex:0 0 103px;min-height:103px;margin:0;padding:8px 13px;background:#1e272e;border:0;border-bottom:1px solid #41505a;color:#e9f0f3;overflow:hidden}
+.daw-canvas .audio-heading{align-items:center}.daw-canvas .audio-heading h2{font:600 11px Inter,Arial;margin:0;color:#d2dce4}
+.daw-canvas .audio-heading .kicker{display:none}
+.daw-canvas #audio-state{font:9px Inter,Arial;color:#90a5ad}
+.daw-canvas #audio-player{position:absolute!important;width:1px!important;height:1px!important;left:-5000px!important;opacity:0!important;pointer-events:none!important}
+.daw-canvas .audio-waveform{height:51px;margin:7px 0 0;padding:3px 0;border:0;background:linear-gradient(180deg,#192229,#151f25);display:flex;align-items:center;gap:2px}
+.daw-canvas .audio-waveform button{background:#4c998e;border:0;min-width:2px;opacity:.9;flex:1;border-radius:1px}
+.daw-canvas .audio-waveform button:hover{background:#ec9e7d}
+.daw-canvas .audio-scale{display:flex;justify-content:space-between;color:#91a1ab;font:9px ui-monospace,Consolas;margin:2px 0 0}
+.daw-canvas .audio-editor{flex:1;display:flex;flex-direction:column;min-height:0;margin:0!important;padding:0;position:relative;border:0;box-shadow:none;border-radius:0;background:#131a1e;overflow:hidden}
+.daw-canvas .editor-toolbar{flex:0 0 auto;min-height:53px;display:flex;align-items:center;flex-wrap:nowrap;gap:10px;justify-content:space-between;padding:9px 13px;border-bottom:1px solid #46515c;background:#252e36;color:#dce5ec}
+.daw-canvas .editor-toolbar .kicker{display:none}
+.daw-canvas .editor-toolbar h2{font:700 13px Inter,Arial;color:#f0f4f6;margin:0}
+.daw-canvas .editor-toolbar .zoom-label{font:10px Inter,Arial;color:#899da9;margin:3px 0 0}
+.daw-canvas .editor-actions{display:flex;align-items:center;gap:10px;flex-wrap:nowrap;font:10px Inter,Arial}
+.daw-canvas .editor-actions #selection-count{font:10px ui-monospace,Consolas;color:#98a9b5}
+.daw-canvas .editor-actions #merge-segments{background:#384651;border-color:#4e606b;color:#e5edf2;padding:8px;border-radius:4px;font:600 10px Inter,Arial}
+.daw-canvas .editor-actions #merge-segments:disabled{background:#2a353d;color:#677b89;border-color:#35424a}
+.daw-canvas .editor-actions .auto-scroll{font:10px Inter,Arial;color:#a8b7c3}
+.daw-canvas .editor-information{flex:0 0 28px;padding:6px 14px;background:#1d262e;color:#9baab7;border-color:#3a4852;font:10px ui-monospace,Consolas}
+.daw-canvas #timeline-playtime{color:#d7e1e7}
+.daw-canvas .timeline-ruler-viewport{flex:0 0 32px;height:32px;background:#293239;border-bottom:1px solid #47545b;margin:0!important}
+.daw-canvas .timeline-ruler{background:#293239;color:#a3b4be}
+.daw-canvas .timeline-ruler .ruler-track-start{background:#323f48}
+.daw-canvas .timeline-viewport{flex:1;max-height:none!important;min-height:0!important;height:auto;overflow:auto;margin:0!important;background:#131b1d}
+.daw-canvas .timeline-canvas{min-height:100%;background:#141d1f}
+.daw-canvas .audio-lane,.daw-canvas .mode-discourse .audio-lane{height:115px;border-bottom:1px solid #354146}
+.daw-canvas .mode-overview .audio-lane{height:58px}
+.daw-canvas .mode-detail .audio-lane{height:154px}
+.daw-canvas .audio-lane.collapsed{height:38px!important}
+.daw-canvas .audio-lane .lane-label{background:#202c32;border-right:1px solid #3d4d54;color:#e0e9ee;padding-top:12px}
+.daw-canvas .audio-lane.active-lane .lane-label{background:#304149}
+.daw-canvas .lane-label span{color:#dce7eb;font-size:11px}
+.daw-canvas .lane-label small{color:#8fa3ac}
+.daw-canvas .lane-track{background:repeating-linear-gradient(90deg,transparent 0 159px,#ffffff05 159px 160px),#141d1e}
+.daw-canvas .audio-lane:nth-of-type(even) .lane-track{background:repeating-linear-gradient(90deg,transparent 0 159px,#ffffff05 159px 160px),#182325}
+.daw-canvas .audio-clip,.daw-canvas .mode-detail .audio-clip,.daw-canvas .mode-overview .audio-clip{border:1px solid color-mix(in srgb,var(--clip) 57%,#678287);border-left:3px solid var(--clip);border-radius:4px;background:color-mix(in srgb,var(--clip) 31%,#283d42);color:#e9f3f5;padding:8px 10px}
+.daw-canvas .audio-clip .segment-copy{color:#f0f5f7;font:500 12px/1.5 Inter,Arial;max-height:75px;-webkit-line-clamp:4}
+.daw-canvas .audio-clip .segment-summary{color:#e6f1f2}
+.daw-canvas .audio-clip:hover{background:color-mix(in srgb,var(--clip) 42%,#304a50)}
+.daw-canvas .audio-clip.selected{outline:2px solid #f8be8c;box-shadow:0 0 0 3px #dd866b88}
+.daw-canvas .audio-clip.playing{box-shadow:0 0 0 2px #f7e2ca,0 0 0 4px #f07e64}
+.daw-canvas .audio-clip>small{color:#bfd0d3;opacity:.7}
+.daw-canvas .mode-detail .audio-clip .word-token{color:#1b292d;background:#f0f6f3d9}
+.daw-canvas .editor-help{flex:0 0 30px;padding:8px 13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#222d33;border-top:1px solid #39464d;color:#8396a0;font:10px Inter,Arial;margin:0}
+.daw-canvas .audio-editor.inspector-open .timeline-viewport,.daw-canvas .audio-editor.inspector-open .timeline-ruler-viewport{margin-right:0!important}
+.daw-sidepanel .clip-inspector{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;display:block;width:100%!important;height:auto;max-height:none!important;min-height:0;padding:14px;border:0;border-bottom:1px solid #40515a;background:#202a32;color:#e5eef2;box-shadow:none;z-index:auto;overflow:visible}
+.daw-sidepanel .clip-inspector[hidden]{display:none!important}
+.daw-sidepanel .clip-inspector header{display:flex;justify-content:space-between;gap:8px}
+.daw-sidepanel .clip-inspector h3{color:#f3f7f8;font:700 15px Inter,Arial}
+.daw-sidepanel .clip-inspector header small,.daw-sidepanel .clip-inspector dt{color:#8399a7}
+.daw-sidepanel .clip-inspector dd{color:#d9e7ed}
+.daw-sidepanel .clip-inspector label{color:#b9c9d3}
+.daw-sidepanel .clip-inspector textarea,.daw-sidepanel .clip-inspector select,.daw-sidepanel .clip-inspector input{background:#182229;color:#eaf1f4;border:1px solid #53636b;border-radius:4px}
+.daw-sidepanel .clip-inspector button{background:#34434c;color:#f0f6f8;border:1px solid #53616b;border-radius:4px}
+.daw-sidepanel .clip-inspector .inspector-primary{background:#ce7054;color:#131b1f;border-color:#f18c71}
+.daw-sidepanel .inspector-split{background:#29353c;border-color:#4c5b65}
+.daw-sidepanel .inspector-hint{color:#94a7b0}
+.daw-sidepanel .inspector-excerpt{background:#2a3840;color:#edf0ef}
+.daw-sidepanel .inspector-excerpt p{color:#d9e6ea}
+.daw-empty-selection{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;min-height:180px;padding:20px;border-bottom:1px solid #3c4a53;gap:5px;color:#a9b6bf}
+.daw-empty-selection[hidden]{display:none!important}
+.daw-empty-symbol{display:block;font-size:34px;color:#6e8592}
+.daw-empty-selection b{font:700 12px Inter,Arial;color:#cad7df}
+.daw-empty-selection p{font:11px/1.6 Inter,Arial;margin:5px 0 0}
+.daw-analytics-label{font:700 9px ui-monospace,Consolas;letter-spacing:.09em;color:#a2b5c1;padding:13px 15px;border-bottom:1px solid #3d4c56}
+.daw-sidepanel .chart-grid{display:flex;flex-direction:column;padding:0;margin:0;gap:0;grid-template-columns:none}
+.daw-sidepanel .viz-card{border:0;border-bottom:1px solid #3d4a54;background:transparent;padding:13px}
+.daw-sidepanel .viz-card h2{font:700 12px Inter,Arial;color:#dce5ec}
+.daw-sidepanel .viz-card header span{font:9px Inter,Arial;color:#899ca7}
+.daw-sidepanel .viz-card .kicker{display:none}
+.daw-sidepanel .bar-chart{height:77px;padding-top:10px}
+.daw-sidepanel .vbar{background:#53a3a0}
+.daw-sidepanel .donut-wrap{padding-top:10px}
+.daw-sidepanel .donut{width:77px;height:77px}
+.daw-sidepanel .donut:after{inset:20px;background:#1f2730}
+.daw-sidepanel .legend,.daw-sidepanel .hbar{color:#bac7cf}
+.daw-sidepanel .hbar div{background:#5c9eae}
+.daw-dock{position:relative;display:flex;flex-direction:column;min-height:0;min-width:0;overflow:hidden;background:#202830;border-top:1px solid #485660}
+.daw-dock-top{height:24px;min-height:24px;padding:3px 11px;display:flex;justify-content:space-between;align-items:center;background:#2a353e;font:700 9px ui-monospace,Consolas;letter-spacing:.09em;color:#8fa5b2}
+.daw-dock .tabs{display:flex;flex:0 0 36px;height:36px;overflow-x:auto;white-space:nowrap;gap:0;background:#192229;margin:0;border-bottom:1px solid #4b5861}
+.daw-dock .tabs button{flex-shrink:0;border:0;border-right:1px solid #313d46;border-bottom:2px solid transparent;background:transparent;color:#a4b4be;font:600 10px Inter,Arial;text-transform:none;letter-spacing:0;margin:0;padding:10px 15px}
+.daw-dock .tabs button.active{background:#2d3943;color:#fff;border-bottom-color:var(--daw-accent)}
+.daw-dock .tab-panel{flex:1;min-height:0;overflow:auto;padding:12px 16px 17px;background:#212b33;color:#dfebef}
+.daw-dock .tab-panel:not(.active){display:none!important}
+.daw-dock .panel,.daw-dock .profile,.daw-dock .story-row,.daw-dock .reference,.daw-dock .reasoning-chain{background:#26343d;border:1px solid #43545e;color:#e7eff1;border-radius:4px;box-shadow:none}
+.daw-dock .panel h2,.daw-dock .discourse-card h3,.daw-dock .story-row h3{font-family:Inter,Arial;color:#f1f5f6}
+.daw-dock .panel header>span,.daw-dock .discourse-card p,.daw-dock .story-row p,.daw-dock .reasoning-chain p{color:#a6bac3}
+.daw-dock .transcript{max-height:none}
+.daw-dock .utterance{border-color:#42505a;background:transparent;color:#e2eaee}
+.daw-dock .utterance:hover{background:#34454e}
+.daw-dock .utterance time,.daw-dock .speaker-label{color:#9babb5}
+.daw-dock .badge{background:#40515b;color:#e1ebec}
+.daw-dock .empty{border-color:#51606b;color:#9cabb7}
+.daw-dock .two-col,.daw-dock .knowledge-grid,.daw-dock .reasoning-grid,.daw-dock .profile-grid{align-items:start}
+.daw-statusbar{height:26px;flex:0 0 26px;margin:0;padding:0 12px 0 72px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #46525c;background:#192229;color:#9eafba;font:9px ui-monospace,Consolas;letter-spacing:.02em}
+.daw-status-left,.daw-status-right{display:flex;align-items:center;gap:10px;min-width:0}.daw-status-left{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.daw-status-left #daw-status-count{overflow:hidden;text-overflow:ellipsis}
+.daw-status-led{width:6px;height:6px;border-radius:50%;background:var(--daw-green)}
+.daw-status-divider{color:#52606a}
+.daw-grip{position:absolute;z-index:45;touch-action:none}
+.daw-grip-horizontal{right:-3px;top:0;bottom:0;width:6px;cursor:col-resize}
+.daw-sidepanel .daw-grip-horizontal{right:auto;left:-3px}
+.daw-grip-vertical{left:0;right:0;top:-3px;height:6px;cursor:row-resize}
+.daw-grip:hover,.daw-grip:active{background:#ed755555}
+body.daw-hide-left .daw-workspace{--daw-browser:0px!important}
+body.daw-hide-left .daw-browser{display:none}
+body.daw-hide-right .daw-workspace{--daw-inspector:0px!important}
+body.daw-hide-right .daw-sidepanel{display:none}
+body.daw-hide-bottom .daw-workspace{--daw-dock:26px!important}
+body.daw-hide-bottom .daw-dock .tabs,body.daw-hide-bottom .daw-dock .tab-panel{display:none!important}
+body.daw-hide-bottom .daw-dock-top{height:26px;min-height:26px}
+.daw-app dialog{z-index:100;background:#252f38;color:#e4edf2;border:1px solid #697882}
+.daw-app dialog h2{color:#fff}.daw-app dialog input,.daw-app dialog textarea,.daw-app dialog select{background:#1a232a;color:#edf3f5;border:1px solid #536571}
+.daw-app dialog label{color:#c6d4dc}
+.daw-app dialog::backdrop{background:#080d11c9}
+@media(max-width:1250px){.daw-workspace{--daw-browser:190px;--daw-inspector:275px}.daw-workspace-key,.daw-inline-hint,.daw-volume{display:none}.daw-transport{gap:6px;padding:5px 10px}.daw-transport-secondary{gap:5px}}
+@media(max-width:980px){body.daw-app .daw-workspace{--daw-browser:175px;--daw-inspector:0px}.daw-sidepanel{display:none}.daw-transport .editor-zoom-controls input{width:45px}.daw-workspace-label{display:none}}
+@media(max-width:700px){body.daw-app .daw-workspace{margin-left:44px;width:calc(100% - 44px);--daw-browser:0px!important;--daw-dock:190px}.daw-browser{display:none}.daw-app .studio-sidebar{width:44px}.daw-app .studio-sidebar button{font-size:8px;min-height:48px}.daw-menubar{padding:0 5px}.daw-menubar button{padding:4px 6px}.daw-app-name{display:none}.daw-transport{flex-wrap:wrap;height:90px;flex-basis:90px;align-content:center}.daw-transport-clock{font-size:17px}.daw-transport-secondary{width:100%;justify-content:flex-start}.daw-rate,.daw-transport-divider{display:none}.daw-app .studio-sidebar{top:168px}.daw-canvas .editor-toolbar{padding:6px}.daw-canvas .editor-actions .auto-scroll{display:none}.daw-statusbar{padding-left:49px}.daw-status-right{display:none}}
+
+/* Project library — workbench, not a marketing landing page. */
+body.modern-home.daw-home{min-height:100vh}
+.daw-home .topbar{height:52px;position:relative;background:#1b232a;border-bottom:1px solid #44505a;color:#eaf1f5;padding:0 26px}
+.daw-home .brand{color:#e5eff3}.daw-home .brand>b{background:#ee7857;color:#191f24;border-radius:5px;width:31px;height:31px}
+.daw-home .brand>span{font:700 13px Inter,Arial}.daw-home .brand small{color:#91a4af}
+.daw-home .topbar nav{font:10px Inter,Arial;color:#b4c2cb}
+.daw-home .home-shell{width:100%;max-width:none;margin:0;min-height:calc(100vh - 52px);padding:0 28px 35px;background:#171e24}
+.daw-home .hero{border:0;border-bottom:1px solid #3e4c56;display:flex;justify-content:space-between;align-items:center;gap:25px;padding:26px 2px 23px}
+.daw-home .hero .kicker{font:700 9px ui-monospace,Consolas;letter-spacing:.12em;color:#ef9d7a;margin-bottom:7px}
+.daw-home .hero h1{font:700 26px Inter,Arial;letter-spacing:-.035em;color:#f1f5f8;line-height:1.1}
+.daw-home .hero p:not(.kicker){max-width:650px;margin:8px 0 0;font:12px/1.5 Inter,Arial;color:#95a7b3}
+.daw-home .primary.big{margin:0;border-radius:5px;padding:11px 18px;background:#e17b5c;color:#161d22;font:700 12px Inter,Arial}
+.daw-home .section-head{padding:20px 2px 12px;border:0}
+.daw-home .section-head h2{font:700 14px Inter,Arial;color:#e0e8ed}
+.daw-home .section-head p{font:10px ui-monospace,Consolas;color:#8c9fab;margin-top:5px}
+.daw-home .segmented{background:#222c34;border:1px solid #46545e;border-radius:5px;overflow:hidden}
+.daw-home .segmented button{font:600 10px Inter,Arial;color:#9eafba;background:transparent;border-right:1px solid #3a4a55;margin:0;padding:9px 15px}
+.daw-home .segmented .selected{background:#42525d;color:#fff}
+.daw-home .stream-grid{display:flex;flex-direction:column;gap:7px;padding:0 0 25px}
+.daw-home .stream-tile{min-height:78px;display:flex;flex-direction:row;gap:12px;align-items:stretch;border:1px solid #3d4c56;border-radius:5px;background:#242e36;color:#dce5e9;padding:0;transition:border-color .15s,background .15s}
+.daw-home .stream-tile:hover{transform:none;border-color:#ee9774;background:#2b3841}
+.daw-home .stream-tile .tile-link{flex:1;display:grid;grid-template-columns:235px minmax(180px,1fr) 250px;grid-template-rows:auto;align-items:center;gap:15px;min-width:0;padding:12px 16px}
+.daw-home .stream-tile .tile-top{flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;min-width:0}
+.daw-home .tile-top>span:last-child{color:#8da2af;font:10px ui-monospace,Consolas}
+.daw-home .stream-tile h3{min-width:0;margin:0;color:#eef4f6;font:700 15px Inter,Arial;letter-spacing:-.01em;overflow-wrap:anywhere}
+.daw-home .tile-link>p{display:none}
+.daw-home .tile-stats{display:flex;justify-content:space-between;gap:20px;padding:0;margin:0;text-align:center}
+.daw-home .tile-stats b{color:#e6edf0;font:700 16px Inter,Arial}.daw-home .tile-stats small{display:block;color:#869da8;font:9px ui-monospace,Consolas;white-space:nowrap}
+.daw-home .state{font:700 9px ui-monospace,Consolas;border-radius:4px;background:#384550;color:#cad8df;padding:5px 8px}
+.daw-home .state.live{background:#214c41;color:#6de0ac}
+.daw-home .state.starting,.daw-home .state.no_signal{background:#53462d;color:#f6cf85}
+.daw-home .state.failed{background:#50302f;color:#ffaaa1}
+.daw-home .stop-control{align-self:center;margin:0 13px 0 0;border-radius:4px;border:1px solid #95554b;color:#ffab96;background:#382d2b;padding:8px 11px;font:600 10px Inter,Arial;white-space:nowrap}
+.daw-home .job-log{max-width:220px;align-self:center;background:#19252a;color:#b4c1c6}
+.daw-home .empty{color:#9cabb2;border-color:#46555f}
+.daw-home dialog{background:#222d34;color:#e3edf2;border:1px solid #62717d}
+.daw-home dialog h2{color:#fff}.daw-home dialog input,.daw-home dialog select{background:#151f25;color:#f2f6f7;border-color:#52616a}
+.daw-home dialog label{color:#c7d5de}.daw-home dialog .primary{background:#ed7958;color:#11191d}
+@media(max-width:1100px){.daw-home .stream-tile .tile-link{grid-template-columns:145px minmax(130px,1fr) 200px;gap:12px}}
+@media(max-width:750px){.daw-home .home-shell{padding:0 14px}.daw-home .hero{align-items:flex-start;flex-direction:column}.daw-home .stream-tile .tile-link{grid-template-columns:1fr 1fr}.daw-home .stream-tile .tile-stats{grid-column:1/-1}.daw-home .stream-tile .tile-top{grid-column:1}.daw-home .stream-tile h3{grid-column:2}.daw-home .stop-control{font-size:9px}.daw-home .hero h1{font-size:23px}}
