@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sala de Situação — News Machine</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">NEWS MACHINE · OPERAÇÃO</p>
+      <h1>Sala de Situação</h1>
+    </div>
+    <div class="live-state"><span class="pulse"></span><span id="connection">Conectando</span><time id="updated"></time></div>
+  </header>
+
+  <main>
+    <section class="launcher">
+      <div class="launcher-copy"><p class="eyebrow">NOVA COLETA</p><h2>Conectar uma transmissão</h2><p>Cole a URL da live ou vídeo. A captura, compreensão e investigação começam em workers independentes.</p></div>
+      <form id="stream-form">
+        <label class="url-field">URL da transmissão<input id="stream-url" name="url" type="url" required placeholder="https://www.youtube.com/watch?v=…"></label>
+        <label>Identificador<input name="stream_id" placeholder="canal-data"></label>
+        <label>Whisper<select name="model"><option>small</option><option>medium</option><option>large-v3</option></select></label>
+        <label>Idioma<select name="language"><option value="pt">Português</option><option value="en">English</option><option value="auto">Automático</option></select></label>
+        <label class="check"><input name="use_ollama" type="checkbox" checked> Analisar com Qwen</label>
+        <button type="submit" id="start-stream">Iniciar coleta</button>
+      </form>
+      <div id="launch-feedback" role="status" aria-live="polite"></div>
+      <div id="jobs" class="jobs"></div>
+    </section>
+    <section class="metrics" id="metrics" aria-label="Resumo operacional"></section>
+
+    <section class="controlbar">
+      <label>Transmissão<select id="stream-filter"><option value="">Todas</option></select></label>
+      <label>Estado<select id="status-filter"><option value="">Todos</option></select></label>
+      <button id="refresh" type="button">Atualizar agora</button>
+    </section>
+
+    <div class="workspace">
+      <section class="column primary">
+        <div class="section-title"><div><span>01</span><h2>Transmissões e discursos</h2></div><small id="stream-count"></small></div>
+        <div id="streams" class="stream-list empty-state">Aguardando eventos...</div>
+        <div id="discourses" class="timeline"></div>
+      </section>
+
+      <section class="column stories-column">
+        <div class="section-title"><div><span>02</span><h2>Histórias em acompanhamento</h2></div></div>
+        <div id="stories" class="story-list empty-state">Nenhuma história detectada.</div>
+      </section>
+
+      <aside class="column evidence-column">
+        <div class="section-title"><div><span>03</span><h2>Evidências e conflitos</h2></div></div>
+        <div id="evidence" class="evidence-list empty-state">Nenhuma evidência recuperada.</div>
+      </aside>
+    </div>
+
+    <section class="editorial">
+      <div class="section-title"><div><span>04</span><h2>Mesa editorial</h2></div><small>artigos versionados</small></div>
+      <div id="articles" class="article-grid empty-state">Nenhum artigo redigido.</div>
+    </section>
+  </main>
+
+  <dialog id="detail-dialog"><button class="dialog-close" aria-label="Fechar">×</button><div id="detail"></div></dialog>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>
